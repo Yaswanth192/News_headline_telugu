@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-10-12T22:41:45.804317",
+  "n_samples": 50,
+  "split": "validation",
+  "models": {
+    "mT5-small": {
+      "rouge": {
+        "rouge1": 0.1025,
+        "rouge2": 0.0283,
+        "rougeL": 0.1025,
+        "n_examples": 50
+      },
+      "chrf": 12.7757,
+      "avg_latency_s": 0.27,
+      "peak_vram_mib": 1907,
+      "relevance_distribution": {
+        "HREL": 29,
+        "MREL": 21,
+        "LREL": 0
+      }
+    },
+    "IndicBART": {
+      "rouge": {
+        "rouge1": 0.0109,
+        "rouge2": 0.0,
+        "rougeL": 0.0109,
+        "n_examples": 50
+      },
+      "chrf": 14.0232,
+      "avg_latency_s": 2.6172,
+      "peak_vram_mib": 1707,
+      "relevance_distribution": {
+        "HREL": 25,
+        "MREL": 25,
+        "LREL": 0
+      }
+    }
+  }
+}

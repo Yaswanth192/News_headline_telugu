@@ -36,7 +36,7 @@
 | 0 | Hardware Audit & Foundation | ✅ PASSED | 2026-10-12 |
 | 1 | Dataset & Baseline | ✅ PASSED | 2026-10-12 |
 | 2 | Relevance Classification | ✅ PASSED | 2026-10-12 |
-| 3 | Model Comparison | ⬜ NOT STARTED | — |
+| 3 | Model Comparison | ✅ PASSED | 2026-10-12 |
 | 4 | Low-Resource Learning | ⬜ NOT STARTED | — |
 | 5 | Gemma 2 Quantity vs Quality | ⬜ NOT STARTED | — |
 | 6 | Streamlit Application | ⬜ NOT STARTED | — |
@@ -127,9 +127,26 @@
 
 ## Phase 1 — Dataset & Baseline
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ PASSED (2026-10-12)
 
-*Waiting for Phase 0 approval.*
+---
+
+## Phase 2 — Relevance Classification
+
+**Status:** ✅ PASSED (2026-10-12)
+
+---
+
+## Phase 3 — Controlled Generation Model Comparison
+
+**Status:** ✅ PASSED (2026-10-12)
+
+- Diagnosed & fixed zero ROUGE score bug by implementing `IndicTokenizer` for Telugu script.
+- Eliminated `<extra_id_0>` sentinel token leakage via `decoder_start_token_id=0` and regex stripping.
+- Verified `ai4bharat/IndicBART` feasibility on local RTX 3050 (4 GB VRAM) — 931 MiB load, 3,164 MiB headroom.
+- Trained `IndicBART` (50 steps, bfloat16, grad accum 16) locally and saved checkpoints.
+- Conducted controlled model comparison between `mT5-small` and `IndicBART` on identical validation samples across ROUGE-1/2/L, chrF, latency, VRAM, and relevance classification via Phase 2 `mBERT` classifier.
+- Full test suite passes: 67/67 automated tests passing. Detailed in `docs/PHASE3_REPORT.md`.
 
 ---
 

@@ -35,8 +35,15 @@ logger = logging.getLogger(__name__)
 
 
 def generate_headline(model, tokenizer, article: str, config: dict, device) -> str:
-    """Generate a headline for a single article string."""
+    """Generate a headline for a single article string.
+
+    Phase 3 fix:
+      1. mT5 requires decoder_start_token_id=tokenizer.pad_token_id (0).
+      2. Residual sentinel tokens (<extra_id_\d+>) from partial training are explicitly
+         stripped using regex so clean headline text is yielded.
+    """
     import torch
+    import re
     source = config.get("source_prefix", "summarize: ") + article
     inputs = tokenizer(
         source,
@@ -45,6 +52,8 @@ def generate_headline(model, tokenizer, article: str, config: dict, device) -> s
         return_tensors="pt",
     ).to(device)
 
+    decoder_start = getattr(tokenizer, "pad_token_id", 0) or 0
+
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
@@ -52,20 +61,44 @@ def generate_headline(model, tokenizer, article: str, config: dict, device) -> s
             num_beams=4,
             early_stopping=True,
             no_repeat_ngram_size=3,
+            decoder_start_token_id=decoder_start,
+            forced_bos_token_id=None,
         )
 
-    return tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
+    text = tokenizer.decode(
+        outputs[0], skip_special_tokens=True, clean_up_tokenization_spaces=True
+    ).strip()
+
+    # Strip sentinel tokens like <extra_id_0>, <extra_id_1>, etc.
+    text = re.sub(r"<extra_id_\d+>", "", text).strip()
+    return text
 
 
 def compute_rouge(predictions: list, references: list) -> dict:
-    """Compute ROUGE-1/2/L scores."""
+    """Compute ROUGE-1/2/L scores using Indic/whitespace tokenizer.
+
+    Phase 3 fix: The default rouge_score tokenizer splits only on ASCII word boundaries
+    `re.findall(r"\w+", text)` which drops all non-Latin Unicode characters, yielding 0 tokens
+    for Telugu text! We provide an Indic-aware whitespace/punctuation tokenizer.
+    """
     try:
-        from rouge_score import rouge_scorer
+        import re
+        from rouge_score import rouge_scorer, tokenizers
+
+        class IndicTokenizer(tokenizers.Tokenizer):
+            def tokenize(self, text):
+                clean = re.sub(r'[\.,\?!;:\"\'\(\)\[\]\{\}\<\>_]', ' ', text)
+                return [w for w in clean.strip().split() if w]
+
+        scorer = rouge_scorer.RougeScorer(
+            ["rouge1", "rouge2", "rougeL"],
+            tokenizer=IndicTokenizer(),
+            use_stemmer=False,
+        )
     except ImportError:
         logger.warning("rouge-score not installed. Run: pip install rouge-score")
         return {}
 
-    scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeL"], use_stemmer=False)
     r1_list, r2_list, rL_list = [], [], []
 
     for pred, ref in zip(predictions, references):

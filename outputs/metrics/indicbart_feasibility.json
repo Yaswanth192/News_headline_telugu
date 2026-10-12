@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-10-12T20:38:56.402731",
+  "model_id": "ai4bharat/IndicBART",
+  "status": "FEASIBLE",
+  "details": {
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "total_vram_mib": 4095,
+    "hf_model_id": "ai4bharat/IndicBART",
+    "hf_access": "OK",
+    "tokenizer": "OK",
+    "vocab_size": 64000,
+    "n_params_millions": 244.0,
+    "vram_after_load_mib": 931,
+    "vram_headroom_mib": 3164,
+    "inference_smoke": "PASSED",
+    "sample_generated": "मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ् मक्कळ्[CLS]",
+    "vram_peak_inference_mib": 967,
+    "training_feasibility": "FEASIBLE — inference and minimal training (batch=1, accum=16+) viable",
+    "recommendation": "FEASIBLE — inference and minimal training (batch=1, accum=16+) viable"
+  },
+  "errors": []
+}
