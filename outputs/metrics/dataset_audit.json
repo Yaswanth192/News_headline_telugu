@@ -1,0 +1,120 @@
+{
+  "audit_timestamp": "2026-10-12T18:28:22.584200",
+  "raw_dir": "D:\\large documents\\Large Projects\\News_Headline\\data\\raw",
+  "splits": {
+    "train": {
+      "n_total": 83866,
+      "warnings": [
+        "72062 exact duplicate (article, headline) pairs"
+      ],
+      "null_article": 0,
+      "null_headline": 0,
+      "empty_article": 0,
+      "empty_headline": 0,
+      "exact_dup_pairs": 72062,
+      "dup_article_count": 72146,
+      "article_char_length": {
+        "min": 35,
+        "max": 14597,
+        "mean": 1222.175720792693,
+        "median": 917.0,
+        "p5": 268.0,
+        "p95": 3143.0
+      },
+      "headline_char_length": {
+        "min": 1,
+        "max": 363,
+        "mean": 31.15436529702144,
+        "median": 30.0,
+        "p5": 14.0,
+        "p95": 51.0
+      },
+      "telugu_quality_pct_sample500": 100.0
+    },
+    "validation": {
+      "n_total": 5962,
+      "warnings": [],
+      "null_article": 0,
+      "null_headline": 0,
+      "empty_article": 0,
+      "empty_headline": 0,
+      "exact_dup_pairs": 0,
+      "dup_article_count": 0,
+      "article_char_length": {
+        "min": 218,
+        "max": 1739,
+        "mean": 814.4978195236498,
+        "median": 771.0,
+        "p5": 417.0,
+        "p95": 1342.9499999999998
+      },
+      "headline_char_length": {
+        "min": 7,
+        "max": 116,
+        "mean": 39.29637705467964,
+        "median": 37.0,
+        "p5": 22.0,
+        "p95": 63.0
+      },
+      "telugu_quality_pct_sample500": 100.0
+    },
+    "test": {
+      "n_total": 12504,
+      "warnings": [
+        "10746 exact duplicate (article, headline) pairs"
+      ],
+      "null_article": 0,
+      "null_headline": 0,
+      "empty_article": 0,
+      "empty_headline": 0,
+      "exact_dup_pairs": 10746,
+      "dup_article_count": 10763,
+      "article_char_length": {
+        "min": 37,
+        "max": 8944,
+        "mean": 1286.0409468969929,
+        "median": 1003.0,
+        "p5": 284.0,
+        "p95": 3179.0
+      },
+      "headline_char_length": {
+        "min": 1,
+        "max": 124,
+        "mean": 31.221129238643634,
+        "median": 30.0,
+        "p5": 14.0,
+        "p95": 51.0
+      },
+      "telugu_quality_pct_sample500": 100.0
+    }
+  },
+  "leakage": {
+    "train_vs_validation": {
+      "headline_overlap": 18,
+      "pct_of_smaller_split": 0.3
+    },
+    "train_vs_test": {
+      "headline_overlap": 56,
+      "pct_of_smaller_split": 1.85
+    },
+    "validation_vs_test": {
+      "headline_overlap": 2,
+      "pct_of_smaller_split": 0.07
+    },
+    "train_vs_validation_article": {
+      "article_overlap": 0
+    },
+    "train_vs_test_article": {
+      "article_overlap": 10
+    },
+    "validation_vs_test_article": {
+      "article_overlap": 0
+    }
+  },
+  "overall_warnings": [
+    "Potential headline leakage: train vs validation: 18 shared headlines",
+    "Potential headline leakage: train vs test: 56 shared headlines",
+    "Potential headline leakage: validation vs test: 2 shared headlines",
+    "Potential article leakage: train vs test: 10 shared articles"
+  ]
+}

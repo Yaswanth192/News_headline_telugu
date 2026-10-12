@@ -34,10 +34,10 @@ An end-to-end research project for **Telugu article-to-headline generation** and
 ## Candidate Models
 
 | Model | Role | Status |
-|-------|------|--------|
-| mT5-small (300M) | Generation baseline 1 | Planned |
-| IndicBART | Generation baseline 2 | Feasibility pending |
-| Gemma 2 2B + QLoRA | Advanced generation | BLOCKED — 4 GB VRAM feasibility test required |
+|---|---|---|
+| mT5-small (300M) | Generation baseline 1 | ✅ Baseline Trained & Evaluated (Phase 1) |
+| IndicBART | Generation baseline 2 | Feasibility pending (Phase 3) |
+| Gemma 2 2B + QLoRA | Advanced generation | BLOCKED — 4 GB VRAM feasibility test required (Phase 5) |
 
 ---
 

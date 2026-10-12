@@ -34,13 +34,32 @@
 | Phase | Name | Status | Updated |
 |-------|------|--------|---------|
 | 0 | Hardware Audit & Foundation | ✅ PASSED | 2026-10-12 |
-| 1 | Dataset & Baseline | ⬜ NOT STARTED | — |
+| 1 | Dataset & Baseline | ✅ PASSED | 2026-10-12 |
 | 2 | Relevance Classification | ⬜ NOT STARTED | — |
 | 3 | Model Comparison | ⬜ NOT STARTED | — |
 | 4 | Low-Resource Learning | ⬜ NOT STARTED | — |
 | 5 | Gemma 2 Quantity vs Quality | ⬜ NOT STARTED | — |
 | 6 | Streamlit Application | ⬜ NOT STARTED | — |
 | 7 | Final Research Report | ⬜ NOT STARTED | — |
+
+---
+
+## Phase 1 — Dataset & Baseline
+
+**Status:** ✅ PASSED
+
+### Acceptance Criteria
+
+| Criterion | Status | Evidence |
+|-----------|--------|----------|
+| Dataset download & schema validation | ✅ PASSED | `saidines12/telugu_news_dataset` (102,332 rows) |
+| Missing values, duplicates & leakage audited | ✅ PASSED | `outputs/metrics/dataset_audit.json` |
+| Text preprocessing & tokenization | ✅ PASSED | 101,965 examples in `data/processed/*.jsonl` |
+| Local GPU training smoke test | ✅ PASSED | 20 steps, loss: 30.68 -> 12.61, RTX 3050 |
+| Baseline 50-step training run | ✅ PASSED | 50 steps, loss: 12.34 -> 4.01, RTX 3050 |
+| Checkpoint saved and reloaded | ✅ PASSED | `checkpoints/mt5_small/final` verified |
+| Evaluation on validation set | ✅ PASSED | chrF = 11.80, avg 0.294s/ex, saved in `outputs/` |
+| Test suite expanded & green | ✅ PASSED | 52/52 tests passing (`pytest tests/ -v`) |
 
 ---
 

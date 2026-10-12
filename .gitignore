@@ -35,6 +35,7 @@ huggingface/
 
 # Dataset downloads (raw data, can be re-downloaded)
 data/raw/
+data/processed/
 data/cache/
 
 # Logs (keep structure, ignore content for git)
@@ -43,6 +44,7 @@ logs/*.jsonl
 
 # Experiment outputs (results kept, not raw prediction files)
 outputs/predictions/
+outputs/*.jsonl
 
 # OS files
 .DS_Store
