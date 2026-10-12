@@ -1,6 +1,6 @@
 # PROJECT STATUS — Telugu News Headline Generator
 
-> Last updated: 2026-10-12
+> Last updated: 2026-10-12 18:07 IST
 
 ---
 
@@ -33,7 +33,7 @@
 
 | Phase | Name | Status | Updated |
 |-------|------|--------|---------|
-| 0 | Hardware Audit & Foundation | 🟡 IN PROGRESS | 2026-10-12 |
+| 0 | Hardware Audit & Foundation | ✅ PASSED | 2026-10-12 |
 | 1 | Dataset & Baseline | ⬜ NOT STARTED | — |
 | 2 | Relevance Classification | ⬜ NOT STARTED | — |
 | 3 | Model Comparison | ⬜ NOT STARTED | — |
@@ -46,28 +46,30 @@
 
 ## Phase 0 — Hardware Audit & Clean Foundation
 
-**Status:** 🟡 IN PROGRESS
+**Status:** ✅ PASSED
 
 ### Acceptance Criteria
 
 | Criterion | Status | Evidence |
 |-----------|--------|----------|
-| Actual hardware findings recorded | ✅ PASSED | nvidia-smi output above |
-| GPU VRAM identified (not assumed) | ✅ PASSED | 4096 MiB confirmed |
-| GPU visibility test (PyTorch CUDA) | 🟡 PENDING | PyTorch not yet installed in venv |
+| Actual hardware findings recorded | ✅ PASSED | nvidia-smi: RTX 3050 Laptop, 4095 MiB, driver 592.82 |
+| GPU VRAM identified (not assumed) | ✅ PASSED | 4095 MiB confirmed — NOT 8 GB |
+| GPU visibility tested (PyTorch CUDA) | ✅ PASSED | `test_gpu.py` → CUDA 12.1, Compute 8.6, tensor op = 12.0 |
 | Python version checked | ✅ PASSED | Python 3.11.0 |
 | Git version checked | ✅ PASSED | git 2.47.0.windows.2 |
-| Disk space recorded | ✅ PASSED | D: 88.36 GB free |
-| Virtual environment created | ✅ PASSED | `venv/` created |
-| PyTorch CUDA build installed | 🟡 PENDING | Installation in progress |
-| Minimal GPU tensor test passes | 🟡 PENDING | Awaiting PyTorch install |
-| .gitignore created | ✅ PASSED | `.gitignore` committed |
-| README.md created | ✅ PASSED | `README.md` committed |
-| PROJECT_STATUS.md created | ✅ PASSED | This file |
-| docs/PROJECT_PLAN.md created | 🟡 PENDING | In progress |
-| Test suite created and passes | 🟡 PENDING | `tests/` in progress |
-| No model training performed | ✅ PASSED | Not started |
-| No existing user files deleted | ✅ PASSED | Verified directory was empty |
+| Disk space recorded | ✅ PASSED | D: 88 GB free (used for data/checkpoints) |
+| Virtual environment created | ✅ PASSED | `venv/` at project root |
+| PyTorch CUDA build installed | ✅ PASSED | torch-2.5.1+cu121 installed |
+| Minimal GPU tensor test passes | ✅ PASSED | Result: 12.0, log: `logs/phase0_gpu_test.json` |
+| Mixed precision (FP16) check | ✅ PASSED | Compute capability 8.6 (Ampere) — FP16 Tensor Cores confirmed |
+| .gitignore created | ✅ PASSED | Covers venv, checkpoints, .cache, .env |
+| README.md created | ✅ PASSED | With hardware table, structure, quick start |
+| PROJECT_STATUS.md created | ✅ PASSED | This document |
+| docs/PROJECT_PLAN.md created | ✅ PASSED | 8-phase plan with commands |
+| Automated test suite passes | ✅ PASSED | 31/31 tests pass (`python -m pytest tests/ -v`) |
+| Git initialized + initial commit | ✅ PASSED | commit e43948c — 14 files |
+| No model training performed | ✅ PASSED | No training scripts invoked |
+| No existing user files deleted | ✅ PASSED | Directory was empty at start |
 
 ### Files Created in Phase 0
 
