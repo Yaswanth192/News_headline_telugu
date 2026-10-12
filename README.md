@@ -97,18 +97,21 @@ python -m pytest tests/ -v
 
 ---
 
-## Phase Status
+## Documentation & Research Reports
 
-See [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for detailed phase-by-phase status.
+- Final Comprehensive Audit: [`docs/FINAL_AUDIT_REPORT.md`](docs/FINAL_AUDIT_REPORT.md)
+- Complete Research Paper & Submission Report: [`docs/FINAL_PROJECT_REPORT.md`](docs/FINAL_PROJECT_REPORT.md)
+- Phase-by-phase status tracking: [`PROJECT_STATUS.md`](PROJECT_STATUS.md)
+- Engineering reproduction commands: [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md)
 
 ---
 
 ## Datasets
 
-| Dataset | Purpose | Source |
-|---------|---------|--------|
-| `saidines12/telugu_news_dataset` | Headline generation | Hugging Face |
-| TeClass | Relevance classification | To be verified |
+| Dataset | Purpose | Source | License |
+|---------|---------|--------|---------|
+| `saidines12/telugu_news_dataset` | Headline generation | Hugging Face Hub (Andhra Jyothi & Eenadu) | Public access |
+| TeClass (Kanumolu et al., LREC-COLING 2024) | Relevance classification | GitHub / ACL Anthology | CC BY-NC-SA 4.0 |
 
 ---
 
