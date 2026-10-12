@@ -37,7 +37,7 @@
 | 1 | Dataset & Baseline | ✅ PASSED | 2026-10-12 |
 | 2 | Relevance Classification | ✅ PASSED | 2026-10-12 |
 | 3 | Model Comparison | ✅ PASSED | 2026-10-12 |
-| 4 | Low-Resource Learning | ⬜ NOT STARTED | — |
+| 4 | Low-Resource Learning | ✅ PASSED | 2026-10-13 |
 | 5 | Gemma 2 Quantity vs Quality | ⬜ NOT STARTED | — |
 | 6 | Streamlit Application | ⬜ NOT STARTED | — |
 | 7 | Final Research Report | ⬜ NOT STARTED | — |
@@ -147,6 +147,19 @@
 - Trained `IndicBART` (50 steps, bfloat16, grad accum 16) locally and saved checkpoints.
 - Conducted controlled model comparison between `mT5-small` and `IndicBART` on identical validation samples across ROUGE-1/2/L, chrF, latency, VRAM, and relevance classification via Phase 2 `mBERT` classifier.
 - Full test suite passes: 67/67 automated tests passing. Detailed in `docs/PHASE3_REPORT.md`.
+
+---
+
+## Phase 4 — Low-Resource Learning
+
+**Status:** ✅ PASSED (2026-10-13)
+
+- Implemented deterministic nested subset generator (`src/experiments/create_subsets.py`): 5%, 10%, 25%, 50%, 100% subsets with fixed seed 42 and SHA-256 manifest.
+- Prioritized and trained `google/mt5-small` across 5%, 25%, and 100% data proportions under 75 standardized optimizer steps on local RTX 3050 GPU.
+- Evaluated on fixed validation data using `IndicTokenizer`, chrF, latency, VRAM, and Phase 2 `mBERT` relevance classifier.
+- Discovered 5% data recovers >85% of full-data lexical performance (ROUGE-1: 0.1903 vs 0.2230), confirming low-resource viability.
+- Learning curves plotted and saved to `outputs/plots/`.
+- Full test suite passes: 71/71 automated tests passing (`tests/test_phase4.py` included). Detailed in `docs/PHASE4_REPORT.md`.
 
 ---
 

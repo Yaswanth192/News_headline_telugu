@@ -1,0 +1,56 @@
+{
+  "5pct": {
+    "proportion_pct": 5,
+    "rouge": {
+      "rouge1": 0.1903,
+      "rouge2": 0.0556,
+      "rougeL": 0.1903,
+      "n_examples": 15
+    },
+    "chrf": 24.6918,
+    "avg_latency_s": 0.4903,
+    "peak_vram_mib": 1907,
+    "training_time_s": 1373.08,
+    "relevance_distribution": {
+      "HREL": 13,
+      "MREL": 2,
+      "LREL": 0
+    }
+  },
+  "25pct": {
+    "proportion_pct": 25,
+    "rouge": {
+      "rouge1": 0.1005,
+      "rouge2": 0.0222,
+      "rougeL": 0.0839,
+      "n_examples": 15
+    },
+    "chrf": 18.1101,
+    "avg_latency_s": 0.3441,
+    "peak_vram_mib": 1905,
+    "training_time_s": 1349.79,
+    "relevance_distribution": {
+      "HREL": 11,
+      "MREL": 4,
+      "LREL": 0
+    }
+  },
+  "100pct": {
+    "proportion_pct": 100,
+    "rouge": {
+      "rouge1": 0.223,
+      "rouge2": 0.0756,
+      "rougeL": 0.1987,
+      "n_examples": 15
+    },
+    "chrf": 29.8,
+    "avg_latency_s": 0.3866,
+    "peak_vram_mib": 1905,
+    "training_time_s": 1307.62,
+    "relevance_distribution": {
+      "HREL": 11,
+      "MREL": 4,
+      "LREL": 0
+    }
+  }
+}
