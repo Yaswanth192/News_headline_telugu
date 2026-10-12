@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-10-13T01:04:24.653191",
+  "model_id": "google/gemma-2-2b",
+  "stages": {
+    "stage1_environment": {
+      "os": "win32",
+      "python_version": "3.11.0",
+      "torch_version": "2.5.1+cu121",
+      "cuda_version": "12.1",
+      "gpu_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "dedicated_vram_mib": 4095.5,
+      "system_ram_total_gb": 15.34,
+      "system_ram_available_gb": 6.23,
+      "packages": {
+        "transformers": "4.46.3",
+        "accelerate": "1.15.0",
+        "peft": "NOT_INSTALLED",
+        "bitsandbytes": "NOT_INSTALLED"
+      }
+    },
+    "stage2_access": {
+      "is_gated": "manual",
+      "authenticated_access_granted": false
+    },
+    "stage3_memory_budget": {
+      "parameter_count": "2.61 Billion",
+      "full_fp16_weights_gb": 5.22,
+      "full_adamw_states_gb": 20.88,
+      "int4_weights_gb": 1.31,
+      "estimated_qlora_training_footprint_gb": 3.6,
+      "dedicated_vram_limit_gb": 4.0,
+      "full_finetune_feasible": false,
+      "theoretical_qlora_feasible_on_paper": true
+    },
+    "stage4_quantization_stack": {
+      "bitsandbytes_installed": false,
+      "peft_installed": false,
+      "windows_cuda_bnb_supported": false
+    }
+  },
+  "blockers": [
+    "HUGGINGFACE_GATED_AUTH_REQUIRED: 'google/gemma-2-2b' requires accepting terms on HuggingFace and running 'huggingface-cli login'.",
+    "BITSANDBYTES_MISSING: 'bitsandbytes' is not installed in the virtual environment. 4-bit NF4 quantization requires bitsandbytes.",
+    "PEFT_MISSING: 'peft' package is not installed in the virtual environment for parameter-efficient LoRA adapters."
+  ],
+  "overall_status": "BLOCKED"
+}

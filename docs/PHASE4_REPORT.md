@@ -34,19 +34,39 @@ To ensure scientific validity and avoid data sampling bias:
 
 ---
 
-## 2. Experimental Results
+---
 
-The models trained on the prioritized tiers (5%, 25%, 100%) were evaluated on the identical validation subset across lexical overlap (`ROUGE-1/2/L`, `chrF`), inference latency, peak memory, and relevance classification using the fine-tuned Phase 2 `mBERT` classifier.
+## Mandatory Phase 4 Integrity Audit & Verification
+
+- **Audit Status:** **PARTIALLY VERIFIED** (Methodology & checkpoints verified; memory reporting and evaluation sample sizes clarified below).
+
+### 1. VRAM vs Shared System Memory Discrepancy
+- **Audit Finding:** The physical GPU is an **NVIDIA RTX 3050 Laptop GPU with 4,095.5 MiB of dedicated hardware VRAM**. The training logs recorded peak values of 6,045–6,066 MiB via `torch.cuda.max_memory_allocated()`.
+- **Root Cause:** On Windows 11 with WDDM (Windows Display Driver Model), PyTorch's CUDA memory allocator permits memory allocations beyond physical dedicated VRAM by paging overflow allocations into **Shared System Memory (System RAM)**. 
+- **Correction:** The metric was previously labeled as "Peak VRAM". It has been corrected to **"PyTorch Peak Allocated Memory (WDDM Overcommitted: ~4,095 MiB Dedicated VRAM + ~1,970 MiB Shared System RAM)"**. Physical dedicated VRAM was never expanded; allocations spilled seamlessly into host system RAM without raising an OOM exception.
+
+### 2. Relevance Classification Sample Size & Denominators
+- **Audit Finding:** The evaluation table reported counts such as `HREL = 13 (86.7%)`, corresponding to a denominator of **$N = 15$ examples** per proportion, rather than the complete validation split ($N = 5,962$).
+- **Correction:** The evaluation sample size is explicitly labeled as **$N = 15$ preliminary evaluation samples** per proportion. The Phase 2 mBERT classifier is an automated surrogate metric (Macro-F1 0.51), not ground-truth human adjudication.
+
+### 3. Fixed-Step Budget Protocol
+- All models were evaluated under a standardized budget of **75 optimizer steps** (~2,400 examples processed). This strictly answers: *"Under equal compute exposure, how does dataset diversity affect convergence?"* It does not imply that the 25% or 100% datasets were fully epoch-converged.
+
+---
+
+## 2. Experimental Results (Audited)
+
+The models trained on the prioritized tiers (5%, 25%, 100%) were evaluated on the identical preliminary validation subset ($N = 15$) across lexical overlap (`ROUGE-1/2/L`, `chrF`), inference latency, peak memory, and relevance classification using the fine-tuned Phase 2 `mBERT` classifier.
 
 ### Quantitative Comparison Table
 
-| Data Proportion | Training Time | Peak VRAM | Loss (Start $\rightarrow$ End) | ROUGE-1 | ROUGE-2 | ROUGE-L | chrF | HREL (FME) | MREL | LREL |
+| Data Proportion | Training Time | PyTorch Peak Alloc (WDDM) | Loss (Start $\rightarrow$ End) | ROUGE-1 | ROUGE-2 | ROUGE-L | chrF | HREL (FME) [N=15] | MREL [N=15] | LREL [N=15] |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **5%** (4,178 samples) | 1,373.1s (~22.8m) | 6,066 MiB | 8.19 $\rightarrow$ 3.02 | 0.1903 | 0.0556 | 0.1903 | 24.69 | **13** (86.7%) | 2 | 0 |
-| **25%** (20,890 samples) | 1,349.8s (~22.5m) | 6,045 MiB | 10.56 $\rightarrow$ 3.73 | 0.1005 | 0.0222 | 0.0839 | 18.11 | **11** (73.3%) | 4 | 0 |
-| **100%** (83,562 samples) | 1,307.6s (~21.8m) | 6,050 MiB | 9.89 $\rightarrow$ 3.39 | **0.2230** | **0.0756** | **0.1987** | **29.80** | **11** (73.3%) | 4 | 0 |
+| **5%** (4,178 samples) | 1,373.1s (~22.8m) | 6,066 MiB (~1.97 GB spilled) | 8.19 $\rightarrow$ 3.02 | 0.1903 | 0.0556 | 0.1903 | 24.69 | **13** (86.7%) | 2 (13.3%) | 0 (0.0%) |
+| **25%** (20,890 samples) | 1,349.8s (~22.5m) | 6,045 MiB (~1.95 GB spilled) | 10.56 $\rightarrow$ 3.73 | 0.1005 | 0.0222 | 0.0839 | 18.11 | **11** (73.3%) | 4 (26.7%) | 0 (0.0%) |
+| **100%** (83,562 samples) | 1,307.6s (~21.8m) | 6,050 MiB (~1.95 GB spilled) | 9.89 $\rightarrow$ 3.39 | **0.2230** | **0.0756** | **0.1987** | **29.80** | **11** (73.3%) | 4 (26.7%) | 0 (0.0%) |
 
-*Note: Peak VRAM reflects total allocated memory utilizing Windows WDDM shared memory overcommit for the 4 GB GPU.*
+*Note: Dedicated hardware VRAM is strictly 4,095.5 MiB. Peak allocation reflects Windows WDDM paging overcommit.*
 
 ---
 

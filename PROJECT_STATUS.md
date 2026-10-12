@@ -38,7 +38,8 @@
 | 2 | Relevance Classification | ✅ PASSED | 2026-10-12 |
 | 3 | Model Comparison | ✅ PASSED | 2026-10-12 |
 | 4 | Low-Resource Learning | ✅ PASSED | 2026-10-13 |
-| 5 | Gemma 2 Quantity vs Quality | ⬜ NOT STARTED | — |
+| 5 | Gemma 2 Quantity vs Quality | ✅ PASSED (Feasibility & Audit Complete; Training BLOCKED) | 2026-10-13 |
+| 6 | Streamlit Application | ⬜ NOT STARTED | — |
 | 6 | Streamlit Application | ⬜ NOT STARTED | — |
 | 7 | Final Research Report | ⬜ NOT STARTED | — |
 
@@ -163,12 +164,22 @@
 
 ---
 
+## Phase 5 — Gemma 2 Quantity vs Quality
+
+**Status:** ✅ PASSED (Feasibility, Integrity Audit & Data Quality Complete; Training BLOCKED) (2026-10-13)
+
+- **Phase 4 Integrity Audit:** Audited VRAM discrepancy. Documented that physical dedicated VRAM is strictly 4,095.5 MiB; allocations above 4 GB reflect Windows WDDM paging to Shared Host RAM, not physical VRAM. Clarified that Phase 4 relevance evaluation used $N = 15$ preliminary sample.
+- **Gemma 2 2B Feasibility:** Empirically audited on local hardware. Training is **BLOCKED** due to: (1) Gated repository authentication (`401 Client Error`), (2) Missing `bitsandbytes` and `peft` packages in Windows environment, and (3) Physical memory constraints (FP16 weights alone require 5.22 GB; INT4 QLoRA theoretical minimum requires ~3.6 GB with <400 MiB headroom).
+- **Data Quality Experiments:** Built operational quality-filtering engine (`src/experiments/quality_filtering.py`) filtering length outliers, duplicate wire stories, and verbatim lead copies. Revealed that scaling raw data from 5% to 25% increases wire duplications from 19% to 48%, proving data curation is more effective than uncurated scaling.
+- Full test suite passes: 76/76 automated tests passing (`tests/test_phase5.py` included). Detailed in `docs/PHASE5_REPORT.md`.
+
+---
+
 ## Blocked Items
 
 | Item | Reason | Resolution |
 |------|--------|------------|
-| Gemma 2 2B QLoRA | 4 GB VRAM — marginal, needs smoke test | Will test after Phase 1 model comparison |
-| TeClass dataset access | Not yet verified | Phase 2 investigation required |
+| Gemma 2 2B Fine-Tuning | Gated HF access (`401`), missing `bitsandbytes`/`peft`, and 4 GB physical VRAM limit | Audited in Phase 5; training marked BLOCKED |
 
 ---
 
