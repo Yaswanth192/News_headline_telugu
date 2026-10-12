@@ -35,11 +35,11 @@ An end-to-end research project for **Telugu article-to-headline generation** and
 
 | Model | Role | Status |
 |---|---|---|
-| mT5-small (300M) | Generation baseline 1 | ✅ Baseline Trained & Evaluated (Phase 1) |
+| mT5-small (300M) | Generation baseline 1 | ✅ Fine-Tuned & Evaluated (Phase 1, 3, 4) |
 | TF-IDF + Logistic Regression | Relevance Classifier baseline | ✅ Trained & Evaluated (Phase 2) |
 | mBERT (`bert-base-multilingual-cased`) | Relevance Classifier Transformer | ✅ Trained & Evaluated on RTX 3050 (Phase 2) |
-| IndicBART | Generation baseline 2 | Feasibility pending (Phase 3) |
-| Gemma 2 2B + QLoRA | Advanced generation | BLOCKED — 4 GB VRAM feasibility test required (Phase 5) |
+| IndicBART (~244M) | Generation baseline 2 | ✅ Fine-Tuned & Evaluated (Phase 3) |
+| Gemma 2 2B + QLoRA | Advanced generation | 🚫 BLOCKED — Gated HF Auth & Windows BnB (Phase 5) |
 
 ---
 
@@ -85,7 +85,12 @@ pip install -r requirements.txt
 python tests/test_gpu.py
 ```
 
-### 4. Run phase tests
+### 4. Launch Telugu Headline Studio (Streamlit)
+```powershell
+python -m streamlit run app.py
+```
+
+### 5. Run complete test suite
 ```powershell
 python -m pytest tests/ -v
 ```

@@ -39,8 +39,7 @@
 | 3 | Model Comparison | ✅ PASSED | 2026-10-12 |
 | 4 | Low-Resource Learning | ✅ PASSED | 2026-10-13 |
 | 5 | Gemma 2 Quantity vs Quality | ✅ PASSED (Feasibility & Audit Complete; Training BLOCKED) | 2026-10-13 |
-| 6 | Streamlit Application | ⬜ NOT STARTED | — |
-| 6 | Streamlit Application | ⬜ NOT STARTED | — |
+| 6 | Streamlit Application | ✅ PASSED | 2026-10-13 |
 | 7 | Final Research Report | ⬜ NOT STARTED | — |
 
 ---
@@ -172,6 +171,22 @@
 - **Gemma 2 2B Feasibility:** Empirically audited on local hardware. Training is **BLOCKED** due to: (1) Gated repository authentication (`401 Client Error`), (2) Missing `bitsandbytes` and `peft` packages in Windows environment, and (3) Physical memory constraints (FP16 weights alone require 5.22 GB; INT4 QLoRA theoretical minimum requires ~3.6 GB with <400 MiB headroom).
 - **Data Quality Experiments:** Built operational quality-filtering engine (`src/experiments/quality_filtering.py`) filtering length outliers, duplicate wire stories, and verbatim lead copies. Revealed that scaling raw data from 5% to 25% increases wire duplications from 19% to 48%, proving data curation is more effective than uncurated scaling.
 - Full test suite passes: 76/76 automated tests passing (`tests/test_phase5.py` included). Detailed in `docs/PHASE5_REPORT.md`.
+
+---
+
+## Phase 6 — Streamlit Application
+
+**Status:** ✅ PASSED (2026-10-13)
+
+- Implemented memory-safe Model Manager (`src/inference/manager.py`) with sequential model loading and explicit VRAM cache clearing (`torch.cuda.empty_cache()`) for 4 GB RTX 3050.
+- Built comprehensive 5-page Streamlit application (`app.py`):
+  1. **Headline Generation:** Interactive Telugu generation with beam search width, length controls, preset real articles, copy field, and JSON download.
+  2. **Relevance Analysis:** Integration with fine-tuned `mBERT` cross-attention and `TF-IDF` classifiers; categorical probabilities and plain-language TeClass definitions.
+  3. **Sequential Comparison:** Side-by-side head-to-head comparison of any two models on the same article, guaranteeing sequential unloading between inferences to preserve VRAM.
+  4. **Research Dashboard:** Authentic visualization of Phase 3 model comparison tables ($N=50$), Phase 4 low-resource scaling tables, learning curve plots, and Phase 5 Gemma 2 blocker audit.
+  5. **About & Architecture:** System design overview, Telugu NLP pipeline, TeClass taxonomy, hardware limitations, and ethical guidelines.
+- Automated tests created and passing: 82/82 automated tests passing (`tests/test_phase6.py` included).
+- Smoke-tested Streamlit server locally with successful HTTP health check. Detailed in `docs/PHASE6_REPORT.md`.
 
 ---
 
