@@ -1,0 +1,50 @@
+{
+  "model_type": "TF-IDF + LogisticRegression",
+  "split": "validation",
+  "num_samples": 3927,
+  "accuracy": 0.4772,
+  "macro_f1": 0.4775,
+  "weighted_f1": 0.4688,
+  "per_class": {
+    "HREL": {
+      "precision": 0.5211,
+      "recall": 0.5904,
+      "f1_score": 0.5536,
+      "support": 1277
+    },
+    "MREL": {
+      "precision": 0.4234,
+      "recall": 0.3158,
+      "f1_score": 0.3618,
+      "support": 1523
+    },
+    "LREL": {
+      "precision": 0.4754,
+      "recall": 0.567,
+      "f1_score": 0.5172,
+      "support": 1127
+    }
+  },
+  "confusion_matrix": [
+    [
+      754,
+      345,
+      178
+    ],
+    [
+      515,
+      481,
+      527
+    ],
+    [
+      178,
+      310,
+      639
+    ]
+  ],
+  "classes": [
+    "HREL",
+    "MREL",
+    "LREL"
+  ]
+}

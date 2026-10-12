@@ -36,6 +36,7 @@ huggingface/
 # Dataset downloads (raw data, can be re-downloaded)
 data/raw/
 data/processed/
+data/teclass/
 data/cache/
 
 # Logs (keep structure, ignore content for git)

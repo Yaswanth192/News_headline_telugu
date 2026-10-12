@@ -35,12 +35,33 @@
 |-------|------|--------|---------|
 | 0 | Hardware Audit & Foundation | ✅ PASSED | 2026-10-12 |
 | 1 | Dataset & Baseline | ✅ PASSED | 2026-10-12 |
-| 2 | Relevance Classification | ⬜ NOT STARTED | — |
+| 2 | Relevance Classification | ✅ PASSED | 2026-10-12 |
 | 3 | Model Comparison | ⬜ NOT STARTED | — |
 | 4 | Low-Resource Learning | ⬜ NOT STARTED | — |
 | 5 | Gemma 2 Quantity vs Quality | ⬜ NOT STARTED | — |
 | 6 | Streamlit Application | ⬜ NOT STARTED | — |
 | 7 | Final Research Report | ⬜ NOT STARTED | — |
+
+---
+
+## Phase 2 — Relevance Classification
+
+**Status:** ✅ PASSED
+
+### Acceptance Criteria
+
+| Criterion | Status | Evidence |
+|-----------|--------|----------|
+| Original paper & dataset audit | ✅ PASSED | Kanumolu et al. (LREC-COLING 2024), 26,178 pairs |
+| Taxonomy & label verification | ✅ PASSED | HREL (FME), MREL (FSE/STC/WKC), LREL (SEN/CBT/MLC/USO) |
+| Data preprocessing & split integrity | ✅ PASSED | Clean parquet/jsonl splits, 0 ID cross-leakage |
+| Classical ML baseline | ✅ PASSED | TF-IDF + Logistic Regression (Macro-F1: 0.4775) |
+| Local GPU transformer classifier | ✅ PASSED | mBERT fine-tuned on RTX 3050 (Macro-F1: 0.5114, VRAM: 3.4GB) |
+| Checkpoints saved & reproducible | ✅ PASSED | `checkpoints/classifier_tfidf/`, `checkpoints/classifier_bert/` |
+| Evaluation on validation split | ✅ PASSED | Saved to `outputs/metrics/*_classifier_eval.json` |
+| Standalone prediction interface | ✅ PASSED | `src/classification/predict.py` (CLI + Python API) |
+| Phase 1 pipeline integrity | ✅ PASSED | All Phase 1 tests untouched and passing |
+| Full test suite green | ✅ PASSED | 61/61 passing (`pytest tests/ -v`) |
 
 ---
 

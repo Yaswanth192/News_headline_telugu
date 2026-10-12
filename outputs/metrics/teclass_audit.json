@@ -1,0 +1,154 @@
+{
+  "audit_timestamp": "2026-10-12T19:45:58.582382",
+  "paper_citation": "Kanumolu et al., LREC-COLING 2024: TeClass: A Human-Annotated Relevance-based Headline Classification and Generation Dataset for Telugu",
+  "paper_url": "https://aclanthology.org/2024.lrec-main.1364/",
+  "dataset_source": "https://github.com/gopichandkanumolu/TeClass",
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)",
+  "taxonomy": {
+    "HREL": {
+      "full_name": "Highly Related",
+      "description": "Headline is directly and accurately tied to the core content/main event of the article.",
+      "fine_grained_subclasses": [
+        "FME (Factual Main Event)"
+      ],
+      "paper_relevance": "High Relevance"
+    },
+    "MREL": {
+      "full_name": "Moderately Related",
+      "description": "Headline is moderately related, focusing on secondary facts, takeaways, or conclusions.",
+      "fine_grained_subclasses": [
+        "FSE (Factual Secondary Event)",
+        "STC (Strong Conclusion)",
+        "WKC (Weak Conclusion)"
+      ],
+      "paper_relevance": "Medium Relevance"
+    },
+    "LREL": {
+      "full_name": "Least Related",
+      "description": "Headline is minimally related, misleading, sensational, clickbait, or unsupported.",
+      "fine_grained_subclasses": [
+        "SEN (Sensational)",
+        "CBT (Clickbait)",
+        "MLC (Misleading Conclusion)",
+        "USO (Unsupported Opinion)"
+      ],
+      "paper_relevance": "Low Relevance"
+    }
+  },
+  "splits": {
+    "train": {
+      "total_samples": 18324,
+      "columns": [
+        "id",
+        "url",
+        "article",
+        "headline",
+        "label"
+      ],
+      "null_article": 0,
+      "null_headline": 0,
+      "null_label": 0,
+      "invalid_labels": [],
+      "class_distribution": {
+        "MREL": 7105,
+        "HREL": 5962,
+        "LREL": 5257
+      },
+      "duplicate_pairs_within_split": 0,
+      "article_char_length": {
+        "min": 205,
+        "mean": 884.3,
+        "median": 867,
+        "max": 1739
+      },
+      "headline_char_length": {
+        "min": 6,
+        "mean": 39.1,
+        "median": 37,
+        "max": 126
+      }
+    },
+    "validation": {
+      "total_samples": 3927,
+      "columns": [
+        "id",
+        "url",
+        "article",
+        "headline",
+        "label"
+      ],
+      "null_article": 0,
+      "null_headline": 0,
+      "null_label": 0,
+      "invalid_labels": [],
+      "class_distribution": {
+        "MREL": 1523,
+        "HREL": 1277,
+        "LREL": 1127
+      },
+      "duplicate_pairs_within_split": 0,
+      "article_char_length": {
+        "min": 248,
+        "mean": 885.0,
+        "median": 867,
+        "max": 1660
+      },
+      "headline_char_length": {
+        "min": 7,
+        "mean": 38.8,
+        "median": 37,
+        "max": 126
+      }
+    },
+    "test": {
+      "total_samples": 3927,
+      "columns": [
+        "id",
+        "url",
+        "article",
+        "headline",
+        "label"
+      ],
+      "null_article": 0,
+      "null_headline": 0,
+      "null_label": 0,
+      "invalid_labels": [],
+      "class_distribution": {
+        "MREL": 1523,
+        "HREL": 1278,
+        "LREL": 1126
+      },
+      "duplicate_pairs_within_split": 0,
+      "article_char_length": {
+        "min": 245,
+        "mean": 883.4,
+        "median": 862,
+        "max": 1650
+      },
+      "headline_char_length": {
+        "min": 7,
+        "mean": 38.9,
+        "median": 37,
+        "max": 131
+      }
+    }
+  },
+  "leakage": {
+    "train_vs_validation": {
+      "id_overlap": 0,
+      "article_overlap": 4,
+      "headline_overlap": 31
+    },
+    "train_vs_test": {
+      "id_overlap": 0,
+      "article_overlap": 6,
+      "headline_overlap": 27
+    },
+    "validation_vs_test": {
+      "id_overlap": 0,
+      "article_overlap": 1,
+      "headline_overlap": 8
+    }
+  },
+  "overall_warnings": []
+}

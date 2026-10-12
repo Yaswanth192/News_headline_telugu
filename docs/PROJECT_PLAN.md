@@ -127,29 +127,33 @@ python src/evaluation/evaluate.py --checkpoint checkpoints/mt5_small/best --spli
 
 **Goal:** TeClass-based classifier for Telugu headline relevance categories.
 
-### Label Taxonomy (to be verified from original paper)
+### Verified Label Taxonomy (Kanumolu et al., LREC-COLING 2024)
 
-| Label | Tentative Description |
-|-------|-----------------------|
-| FME | Factual Main Event — headline directly states the article's primary factual event |
-| FSE | Factual Secondary Event — factual but not the primary event |
-| STC | Strong Conclusion — interpretive conclusion strongly supported |
-| WKC | Weak Conclusion — conclusion weakly supported |
-| SEN | Sensational — emotionally amplified |
-| CBT | Clickbait — withholds key information to bait clicks |
-| MLC | Misleading Conclusion — factually misleading |
-| USO | Unsupported Opinion — opinion with no factual basis |
-| HREL | High-RELevance (if distinct from FME — to be confirmed) |
+| Primary Category | Full Name | Associated Sub-Classes | Description |
+|---|---|---|---|
+| **HREL** | Highly Related | **FME** (Factual Main Event) | Headline directly and accurately states the primary factual event of the article. |
+| **MREL** | Moderately Related | **FSE** (Factual Secondary Event), **STC** (Strong Conclusion), **WKC** (Weak Conclusion) | Headline focuses on secondary details, inferences, or partial takeaways. |
+| **LREL** | Least Related | **SEN** (Sensational), **CBT** (Clickbait), **MLC** (Misleading Conclusion), **USO** (Unsupported Opinion) | Headline is sensationalized, clickbait, misleading, or out of scope. |
 
-> **WARNING:** Do not assume HREL ≡ FME. Verify from the published TeClass paper before building the classifier.
+> **Finding:** HREL, MREL, and LREL form the 3 primary relevance tiers. HREL corresponds directly to headlines covering the Factual Main Event (FME). In binary relevance, Relevant = {FME, STC, FSE} and Less Relevant = {WKC, MLC, SEN, CBT}.
 
 ### Commands
 
 ```powershell
-python src/data/download_teclass.py
-python src/classification/train_classifier.py --smoke-test
-python src/classification/train_classifier.py --config configs/classifier.yaml
-python src/classification/evaluate_classifier.py --split test
+# Audit TeClass dataset
+python src/classification/audit_teclass.py
+
+# Preprocess TeClass splits
+python src/classification/preprocess_teclass.py
+
+# Train classical baseline (TF-IDF + Logistic Regression)
+python src/classification/train_baseline.py
+
+# Train transformer classifier (mBERT on local RTX 3050 GPU)
+python src/classification/train_transformer.py --max-steps 150
+
+# Run standalone inference CLI
+python src/classification/predict.py --headline "<headline>" --article "<article>" --model-type bert
 ```
 
 ### Metrics

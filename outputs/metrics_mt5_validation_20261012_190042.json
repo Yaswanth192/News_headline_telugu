@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-10-12T19:00:42.821622",
+  "checkpoint": "checkpoints\\mt5_small\\final",
+  "split": "validation",
+  "n_examples": 50,
+  "rouge_scores": {
+    "rouge1": 0.0,
+    "rouge2": 0.0,
+    "rougeL": 0.0,
+    "n_examples": 50
+  },
+  "chrf": 11.8002,
+  "peak_vram_mib": 1227,
+  "avg_inference_time_s": 0.2938,
+  "result_label": "PRELIMINARY — smoke test / partial training only",
+  "predictions_path": "D:\\large documents\\Large Projects\\News_Headline\\outputs\\predictions_mt5_validation_20261012_190042.jsonl"
+}

@@ -1,0 +1,47 @@
+{
+  "accuracy": 0.5238,
+  "macro_f1": 0.5114,
+  "weighted_f1": 0.4986,
+  "per_class": {
+    "HREL": {
+      "precision": 0.5002,
+      "recall": 0.8238,
+      "f1_score": 0.6225,
+      "support": 1277
+    },
+    "MREL": {
+      "precision": 0.4804,
+      "recall": 0.2659,
+      "f1_score": 0.3423,
+      "support": 1523
+    },
+    "LREL": {
+      "precision": 0.6116,
+      "recall": 0.5324,
+      "f1_score": 0.5693,
+      "support": 1127
+    }
+  },
+  "confusion_matrix": [
+    [
+      1052,
+      147,
+      78
+    ],
+    [
+      815,
+      405,
+      303
+    ],
+    [
+      236,
+      291,
+      600
+    ]
+  ],
+  "model_type": "IndicBERT (google-bert/bert-base-multilingual-cased)",
+  "checkpoint": "D:\\large documents\\Large Projects\\News_Headline\\checkpoints\\classifier_bert\\final",
+  "smoke_test": false,
+  "trained_steps": 150,
+  "peak_vram_mib": 3436
+}
