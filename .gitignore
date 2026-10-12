@@ -1,0 +1,69 @@
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Model checkpoints and weights (large files)
+checkpoints/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+
+# HuggingFace cache (can be huge)
+.cache/
+huggingface/
+
+# Dataset downloads (raw data, can be re-downloaded)
+data/raw/
+data/cache/
+
+# Logs (keep structure, ignore content for git)
+logs/*.log
+logs/*.jsonl
+
+# Experiment outputs (results kept, not raw prediction files)
+outputs/predictions/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Environment variables / secrets
+.env
+.env.*
+secrets.yaml
+
+# Streamlit cache
+.streamlit/
+
+# Temp files
+*.tmp
+*.bak
+scratch/

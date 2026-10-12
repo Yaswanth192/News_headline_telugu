@@ -1,0 +1,13 @@
+{
+  "pytorch_version": "2.5.1+cu121",
+  "cuda_available": true,
+  "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "vram_mib": 4095,
+  "cuda_version": "12.1",
+  "gpu_tensor_test": true,
+  "compute_capability": "8.6",
+  "fp16_supported": true,
+  "vram_free_mib": 4093,
+  "timestamp": "2026-10-12T18:05:37.328438",
+  "all_passed": true
+}
